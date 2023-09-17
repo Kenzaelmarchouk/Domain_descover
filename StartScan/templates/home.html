@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{%block title%}Target{%endblock%}
+{%block content%}
+<p>Subdomains enum is a web application that aims to perform subdomain discovery</p>
+<p>It is based on tools:</p>
+ <ul>
+  <li>SubFinder</li>
+  <li>Google API</li>
+  <li>DuckDuckGo API</li>
+  <li>Get All urls (gau)</li>
+  <li>Crt.sh</li>
+  <li>Virus Total</li>
+  <li>RapidDNS</li>
+  <li>Amass</li>
+</ul>
+<br><br>
+<div class="col-md-4">
+<div class="border p-2 shadow">
+  <button onClick="location.href='/'",type="button">StartScan</button>
+ <button onClick="location.href='/home'",type="button">Dashboard</button>
+</div>
+</div>
+<style>
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+{%endblock%}

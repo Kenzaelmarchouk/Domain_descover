@@ -1,0 +1,203 @@
+{%extends 'base.html'%}
+{%block title%}Dashboard{%endblock%}
+{%block content%}
+<div class="row mt-3 pt-3">
+    <div class="col-md-4">
+        <h3>Total target : {{domain_count}}</h3>
+        <div class="border p-2 shadow">
+           <table>
+               <thead>
+               <tr>
+                   <th>ID</th>
+                   <th>Domain</th>
+                   <th>IP</th>
+               </tr>
+
+               </thead>
+               {%for elt in domain%}
+               <tr>
+                   <td>{{elt.id}}</td>
+                   <td>{{elt.domain_name}}</td>
+                   <td>{{elt.ip_adress}}</td>
+               </tr>
+               {%endfor%}
+           </table>
+
+
+
+
+        </div>
+        <div>
+            <form>
+                 <label for="filter">Filter subdomains by domain ID:</label>
+                 <input type="text" id="filter" name="filter">
+                <button type="submit">Filtrer</button>
+            </form>
+        </div>
+        <div id="chartp">
+
+            <canvas id="myChart" width="50" height="50"></canvas>
+            <canvas id="myChart1" width="50" height="50" ></canvas>
+            <script>
+                const ctx = document.getElementById('myChart').getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'pie',
+                    size: '15%',
+                    data: {
+                        labels: [{% for item in domain %}"{{ item }}",{% endfor %}],
+                datasets: [{
+                    //label: '# of Votes',
+                    data: {{ data }},
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(25, 159, 64, 1)',
+                    'rgba(70, 259, 70, 1)'
+                ],
+                    borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(25, 159, 64, 1)',
+                    'rgba(70, 259, 70, 1)'
+                ],
+                    borderWidth: 1
+            }]
+        },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                                text: 'Total subdomains found for each domain'
+                        }
+                    },
+                   
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+                const ctx1 = document.getElementById('myChart1').getContext('2d');
+                const myChart1 = new Chart(ctx1, {
+                    type: 'bar',
+                    size: '15%',
+                    data: {
+                        labels: ['SubFinder','Google API','DuckDuckGo API','Get All Urls','Virus Total','crt.sh','RapidDNS','Amass'],
+
+                datasets: [{
+                    data: [{{nbsub_subfinder}}, {{ nbsub_googleapi }},{{ nbsub_ddg }}, {{nbsub_gal}}, {{nbsub_virust}}, {{nbsub_crtsh}},{{nbsub_RapidDNS}},{{nbsub_amass}}],
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(25, 159, 64, 1)',
+                    'rgba(70, 259, 70, 1)'
+                ],
+                    borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(25, 159, 64, 1)',
+                    'rgba(70, 259, 70, 1)'
+                ],
+                    borderWidth: 1
+            }]
+        },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                                text: 'Total subdomains found by each tool'
+                        },
+                        legend: {
+                              display: false
+                               }
+                    },
+                   
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+                
+                
+
+               myChart.render();
+               myChart1.render();
+
+            </script>
+
+        </div>
+    </div>
+</div>
+<h3>Total subdomain {{subdomain_count}}</h3>
+ <div class="col-md-4">
+     <div class="border p-2 shadow">
+
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                subdomain
+            </th>
+
+            <th>
+                IP
+            </th>
+           <th>
+                Domain
+            </th>
+
+
+        </tr>
+    </thead>
+    {%for instance in Sub%}
+    <tr>
+        <td>
+            {{instance.subDomain_name}}
+        </td>
+
+        <td>
+            {{instance.ip}}
+        </td>
+        
+        <td>
+            {{instance.domain.domain_name}}
+        </td>
+
+    </tr>
+    {%endfor%}
+</table>
+    </div>
+ </div>
+<style>
+#chartp{
+position: absolute; top: 100px; right: 0px;margin: 0 auto;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+{%endblock%}

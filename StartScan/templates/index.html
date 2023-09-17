@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+{%block title%}Target{%endblock%}
+{%block content%}
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %} 
+  <div>
+    <!--<label for="formFileLg" class="form-label">Téléchargez le fichier qui contient les domaines.</label>-->
+    <label for="formFileLg" class="form-label">Download the file containing the domains to discover.</label>
+    <p>Accepted format: .txt</p>
+    {{form}}
+  </div>
+ <br><br>
+
+<button>Start Scan</button>
+</form>
+<style>
+button {
+  background-color: #008CBA; /* Blue */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+
+{%endblock%}
