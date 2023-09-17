@@ -1,0 +1,7 @@
+django
+gunicorn
+django-import_export
+asyncwhois
+google-api-python-client
+beautifulsoup4
+duckduckgo-search
