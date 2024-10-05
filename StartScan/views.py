@@ -234,8 +234,8 @@ def google_api(path):
         for line in file:
             domain = line.strip()
             if re.match(pattern, domain):
-                api_key = "AIzaSyCEgz-ir0v9R-pLVSzXDrV2CtXIX69rpoo"
-                search_engine_id = "b68d001bbc5374ffd"  # here put your own credential
+                api_key = "YOURAPIKey"
+                search_engine_id = "YOURCredential"  # here put your own credential
                 resource = build("customsearch", "v1",
                                  developerKey=api_key).cse()
                 request = resource.list(
@@ -371,7 +371,7 @@ def virus_total(path):
             domain = line.strip()
             id_domain = Domain.objects.all()
             if re.match(pattern, domain):
-                API_key = '80ce536675e3084172ee9037a0129e0db03a5f1386866754f38ad56ec40bebcb'
+                API_key = 'YOUR API'
                 url = 'https://www.virustotal.com/vtapi/v2/domain/report'
                 params = {'apikey': API_key, 'domain': domain}
                 try:
