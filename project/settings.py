@@ -22,7 +22,7 @@ sys.path=["",Extern_libs_path]+sys.path
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wwLtluYjZir5NxFHuObL0AGtAv8BmFQgX0Z6Ouf10VU0cHlO1hZd0+iVP9Vh9OTM31hnipz2AopmPdT5A/ZYtA=='
+SECRET_KEY = 'yoursecret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
